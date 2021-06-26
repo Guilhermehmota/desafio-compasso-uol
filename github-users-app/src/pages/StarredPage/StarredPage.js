@@ -1,11 +1,18 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { BASE_URL } from "../../constants/url"
+import StarredCard from "../../components/StarredCard/StarredCard"
+import { MainContainer } from "../../styled"
+import { Header, Title } from "./styled"
+import Button from '@material-ui/core/Button';
+import { goBack } from "../../routes/coordinator"
 
 const StarredPage = () => {
-    const {username} = useParams()
+    const { username } = useParams()
     const [starred, setStarred] = useState([])
+
+    const history = useHistory()
 
     useEffect(() => {
         getStarred()
@@ -23,17 +30,22 @@ const StarredPage = () => {
 
     const starredList = starred && starred.map((starred) => {
         return (
-            <div key={starred.id} >
-                <p>{starred.name}</p>
-                <p>{starred.description}</p>
-            </div>
+            <StarredCard
+                key={starred.id}
+                name={starred.name}
+                description={starred.description}
+            >
+            </StarredCard>
         )
     })
-    return(
-        <div>
-            <h1>StarredPage</h1>
+    return (
+        <MainContainer>
+            <Header>
+                <Title>Mais visitados</Title>
+                <Button onClick={() => goBack(history)} variant="contained" color="primary" >voltar</Button>
+            </Header>
             {starredList}
-        </div>
+        </MainContainer>
     )
 }
 

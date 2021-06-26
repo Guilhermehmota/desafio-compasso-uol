@@ -24,10 +24,19 @@ width: 90%;
 justify-content: center;
 align-items: center;
 `
+export const Name = styled.h2`
+letter-spacing: 2px;
+color: ${primaryColor}
+`
 export const Bio = styled.h4`
 color: white;
 `
 export const DivButtons = styled.div`
 display: flex;
 gap: 10px;
+`
+export const DivFollow = styled.div`
+width: 60%;
+display: flex;
+justify-content: space-evenly;
 `
