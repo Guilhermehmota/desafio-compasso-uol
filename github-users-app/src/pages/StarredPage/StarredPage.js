@@ -17,11 +17,11 @@ const StarredPage = () => {
             setStarred(starred.data)
             console.log(starred.data)
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(error.response.data.message)
         }
     }
 
-    const starredList = starred.map((starred) => {
+    const starredList = starred && starred.map((starred) => {
         return (
             <div key={starred.id} >
                 <p>{starred.name}</p>
