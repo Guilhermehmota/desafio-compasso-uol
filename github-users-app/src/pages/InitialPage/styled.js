@@ -2,7 +2,8 @@ import styled from "styled-components"
 import { primaryColor } from "../../constants/colors"
 
 export const LogoGithub = styled.img`
-width: 200px;
+width: 250px;
+margin-bottom: 40px;
 `
 export const Title = styled.h2`
 color: ${primaryColor};

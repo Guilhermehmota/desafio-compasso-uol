@@ -4,9 +4,10 @@ import { useHistory, useParams } from "react-router-dom"
 import { BASE_URL } from "../../constants/url"
 import { goBack } from "../../routes/coordinator"
 import { MainContainer } from "../../styled"
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import { Header, Title } from "./styled"
 import RepoCard from "../../components/RepoCard/RepoCard"
+
 
 
 const ReposPage = () => {
@@ -23,7 +24,6 @@ const ReposPage = () => {
         try {
             const repos = await axios.get(`${BASE_URL}/${username}/repos`)
             setRepos(repos.data)
-            // console.log(repos.data)
         } catch (error) {
             alert(error.response.data.message)
         }
@@ -51,7 +51,7 @@ const ReposPage = () => {
                 <Title>Repositórios</Title>
                 <Button onClick={() => goBack(history)} variant="contained" color="primary" >voltar</Button>
             </Header>            
-            {reposList}            
+            {repos[0] ? reposList: <Title>Nenhum repositório encontrado</Title>}            
         </MainContainer>
     )
 }
