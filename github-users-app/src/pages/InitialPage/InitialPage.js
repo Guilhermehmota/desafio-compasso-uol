@@ -1,12 +1,15 @@
 import React from "react"
-import { useHistory } from "react-router-dom";
+import axios from "axios"
+import { useHistory } from "react-router-dom"
 import useForm from "../../hooks/useForm"
-import { goToProfile } from "../../routes/coordinator";
-import { MainContainer } from "../../styled";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { goToProfile } from "../../routes/coordinator"
+import { MainContainer } from "../../styled"
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import githubLogo from "../../img/githubLogo.png"
-import { LogoGithub, Title, InitialForm } from "./styled";
+import { LogoGithub, Title, InitialForm } from "./styled"
+import { CircularProgress } from "@material-ui/core"
+import { BASE_URL } from "../../constants/url"
 
 const initialForm = {
     username: "",
@@ -17,18 +20,24 @@ const InitialPage = () => {
     const history = useHistory()
 
     const [form, onChange, clear] = useForm(initialForm);
+    
 
-    const handleClick = (event) => {
+    const getProfile = async (event) => {
         event.preventDefault();
-        goToProfile(history, form.username)
-        clear();
+        try {
+            await axios.get(`${BASE_URL}/${form.username}`)
+            goToProfile(history, form.username)
+        } catch (error) {
+            alert("Este usuário não existe")
+            clear()
+        }
     }
 
     return(
         <MainContainer>
             <Title>Pesquise aqui um perfil no GitHub</Title>
-            <LogoGithub src={githubLogo}></LogoGithub>
-            <InitialForm onSubmit = {handleClick}>
+            {githubLogo? <LogoGithub src={githubLogo}/> : <CircularProgress color="primary"/>}
+            <InitialForm onSubmit = {getProfile}>
                 <div>
                 <TextField
                 required

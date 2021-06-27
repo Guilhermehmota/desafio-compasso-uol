@@ -4,8 +4,9 @@ import { useHistory, useParams } from "react-router-dom"
 import { BASE_URL } from "../../constants/url"
 import { goToInitialPage, goToRepos, goToStarred } from "../../routes/coordinator"
 import { MainContainer } from "../../styled"
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import { Header, Title, ProfileImage, ContainerBio, Bio, DivButtons, Name } from './styled'
+import { CircularProgress } from "@material-ui/core"
 
 const ProfilePage = () => {
 
@@ -25,7 +26,8 @@ const ProfilePage = () => {
             const profile = await axios.get(`${BASE_URL}/${username}`)
             setProfile(profile.data)
         } catch (error) {
-            alert(error.response.data.message)
+            goToInitialPage(history)
+            alert("Este usuário não existe")
         }
     }
 
@@ -34,7 +36,7 @@ const ProfilePage = () => {
             const starred = await axios.get(`${BASE_URL}/${username}/starred`)
             setStarred(starred.data)
         } catch (error) {
-            alert(error.response.data.message)
+            
         }
     }
 
@@ -44,14 +46,14 @@ const ProfilePage = () => {
                 <Title>#{profile.login}</Title>
                 <Button onClick={() => goToInitialPage(history)} variant="contained" color="primary" >voltar</Button>
             </Header>
-            <ProfileImage src={profile.avatar_url}></ProfileImage>
+            {profile.avatar_url? <ProfileImage src={profile.avatar_url}/> : <CircularProgress color="primary"/>}
             <Name>{profile.name}</Name>
             <ContainerBio>
                 <Bio>{profile.bio}</Bio>
             </ContainerBio>
             <DivButtons>
                 <Button onClick={() => goToRepos(history, username)} variant="outlined" color="primary"> Repositórios: {profile.public_repos}</Button>
-                <Button onClick={() => goToStarred(history, username)} variant="outlined" color="primary" >Mais visitados: {starred.length} </Button>
+                <Button onClick={() => goToStarred(history, username)} variant="outlined" color="primary"> Mais visitados: {starred.length} </Button>
             </DivButtons>
 
         </MainContainer>
