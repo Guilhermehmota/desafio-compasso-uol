@@ -3,7 +3,7 @@
 
 ## Objetivo do Projeto 📌
 
-Aplicação desenvolvida em React que permite realizar a pesquisa de um perfil do GitHub através do nome de usuário. Existindo este usuário, a aplicação exibe nome, foto de perfil, bio, número de repositórios e os repositórios estrelados/favoritos do usuário. 
+Aplicação desenvolvida em React que permite realizar a pesquisa de um perfil do GitHub através do nome de usuário. Existindo este usuário, a aplicação exibe nome, foto de perfil, bio, número de repositórios e os repositórios estrelados/favoritos do usuário pesquisado. 
 
 ## Link do surge
 https://guilherme-desafio-compasso-uol.surge.sh/
