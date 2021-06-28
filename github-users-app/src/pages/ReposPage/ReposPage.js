@@ -8,13 +8,14 @@ import Button from '@material-ui/core/Button'
 import { Header, Title } from "./styled"
 import RepoCard from "../../components/RepoCard/RepoCard"
 
-
-
 const ReposPage = () => {
-    const {username} = useParams()
-    const [repos, setRepos] = useState([])
 
     const history = useHistory()
+
+    const {username} = useParams()
+
+    const [repos, setRepos] = useState([])
+
 
     useEffect(() => {
         getRepos()

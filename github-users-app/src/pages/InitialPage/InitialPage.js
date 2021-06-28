@@ -35,7 +35,7 @@ const InitialPage = () => {
 
     return(
         <MainContainer>
-            <Title>Pesquise aqui um perfil no GitHub</Title>
+            <Title>Pesquise aqui por um perfil do GitHub</Title>
             {githubLogo? <LogoGithub src={githubLogo}/> : <CircularProgress color="primary"/>}
             <InitialForm onSubmit = {getProfile}>
                 <div>

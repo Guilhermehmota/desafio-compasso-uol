@@ -13,6 +13,7 @@ const ProfilePage = () => {
     const history = useHistory()
 
     const { username } = useParams()
+
     const [profile, setProfile] = useState({})
     const [starred, setStarred] = useState([])
 
@@ -26,8 +27,7 @@ const ProfilePage = () => {
             const profile = await axios.get(`${BASE_URL}/${username}`)
             setProfile(profile.data)
         } catch (error) {
-            goToInitialPage(history)
-            alert("Este usuário não existe")
+            alert(error.response.data.message)
         }
     }
 
@@ -36,7 +36,7 @@ const ProfilePage = () => {
             const starred = await axios.get(`${BASE_URL}/${username}/starred`)
             setStarred(starred.data)
         } catch (error) {
-            
+            alert(error.response.data.message)
         }
     }
 
@@ -53,7 +53,7 @@ const ProfilePage = () => {
             </ContainerBio>
             <DivButtons>
                 <Button onClick={() => goToRepos(history, username)} variant="outlined" color="primary"> Repositórios: {profile.public_repos}</Button>
-                <Button onClick={() => goToStarred(history, username)} variant="outlined" color="primary"> Mais visitados: {starred.length} </Button>
+                <Button onClick={() => goToStarred(history, username)} variant="outlined" color="primary"> Estrelados: {starred.length} </Button>
             </DivButtons>
 
         </MainContainer>

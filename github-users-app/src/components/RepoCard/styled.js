@@ -12,8 +12,8 @@ export const RepoContainer = styled.div`
     padding: 5px 20px;
 `
 export const Title = styled.h3`
-color: ${darkColor};
+    color: ${darkColor};
 `
 export const CreatedAt = styled.p`
-color: ${darkColor};
+    color: ${darkColor};
 `
