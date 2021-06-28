@@ -9,10 +9,13 @@ import Button from '@material-ui/core/Button'
 import { goBack } from "../../routes/coordinator"
 
 const StarredPage = () => {
-    const { username } = useParams()
-    const [starred, setStarred] = useState([])
 
     const history = useHistory()
+
+    const { username } = useParams()
+
+    const [starred, setStarred] = useState([])
+
 
     useEffect(() => {
         getStarred()
@@ -40,7 +43,7 @@ const StarredPage = () => {
     return (
         <MainContainer>
             <Header>
-                <Title>Mais visitados</Title>
+                <Title>Repositórios estrelados</Title>
                 <Button onClick={() => goBack(history)} variant="contained" color="primary" >voltar</Button>
             </Header>
             {starred[0] ? starredList : <Title>Nenhum repositório encontrado</Title>}

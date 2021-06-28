@@ -12,8 +12,8 @@ export const StarredContainer = styled.div`
     padding: 5px 20px;
 `
 export const Title = styled.h3`
-color: ${darkColor};
+    color: ${darkColor};
 `
 export const Description = styled.p`
-color: ${darkColor};
+    color: ${darkColor};
 `
